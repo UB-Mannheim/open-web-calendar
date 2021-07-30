@@ -34,7 +34,6 @@ function getQueries() {
 }
 
 // TODO: allow choice through specification
-var GOOGLE_URL = "https://maps.google.com/maps?q=";
 var OSM_URL = "https://www.openstreetmap.org/search?query=";
 
 /* Create a link around the HTML text.
@@ -138,6 +137,20 @@ function loadCalendar() {
     // use UTC, see https://docs.dhtmlx.com/scheduler/api__scheduler_server_utc_config.html
     scheduler.config.server_utc = true;
     scheduler.config.readonly = true;
+//    scheduler.config.readonly_form = true;
+
+    // Hide weekends: https://docs.dhtmlx.com/scheduler/week_view.html
+    // 0 refers to Sunday, 6 - to Saturday
+//    scheduler.ignore_week = function(date){
+//    if (date.getDay() == 6 || date.getDay() == 0) //hides Saturdays and Sundays
+//        return true;
+//    };
+
+    // hide night hours: https://docs.dhtmlx.com/scheduler/configuration.html
+    scheduler.config.first_hour = 7;
+    scheduler.config.last_hour = 22;
+    scheduler.config.start_on_monday = true;
+
     scheduler.init('scheduler_here', new Date(), specification["tab"]);
 
     // event in the calendar
@@ -146,12 +159,15 @@ function loadCalendar() {
     }
     // tool tip
     // see https://docs.dhtmlx.com/scheduler/tooltips.html
+    // --> disabled / not imported in templates/calendars/dhtmlx.html
     scheduler.templates.tooltip_text = function(start, end, event) {
-        return template.summary(event) + template.details(event) + template.location(event);
+        // Do not display details
+        // return template.summary(event) + template.details(event) + template.location(event);
+        return template.summary(event) + template.location(event);
     };
-    dhtmlXTooltip.config.delta_x = 0;
-    dhtmlXTooltip.config.delta_y = 0;
-    // quick info
+//    dhtmlXTooltip.config.delta_x = 0;
+//    dhtmlXTooltip.config.delta_y = 0;
+    // quick info (disabled / not imported in templates/calendars/dhtmlx.html)
     scheduler.templates.quick_info_title = function(start, end, event){
         return template.summary(event);
     }
