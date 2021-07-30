@@ -60,6 +60,7 @@ class ConvertToDhtmlx(ConversionStrategy):
             "end_date_iso_0": end.isoformat(),
             "text":  name,
             "description": calendar_event.get("DESCRIPTION", ""),
+            "color": calendar_event.get("COLOR", None),
             "location": calendar_event.get("LOCATION", None),
             "geo": geo,
             "uid": uid,
