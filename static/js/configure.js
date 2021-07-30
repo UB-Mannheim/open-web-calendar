@@ -34,7 +34,6 @@ function getQueries() {
 }
 
 // TODO: allow choice through specification
-var GOOGLE_URL = "https://maps.google.com/maps?q=";
 var OSM_URL = "https://www.openstreetmap.org/search?query=";
 
 /* Create a link around the HTML text.
@@ -173,8 +172,11 @@ function loadCalendar() {
     }
     // tool tip
     // see https://docs.dhtmlx.com/scheduler/tooltips.html
+    // --> disabled / not imported in templates/calendars/dhtmlx.html
     scheduler.templates.tooltip_text = function(start, end, event) {
-        return template.summary(event) + template.details(event) + template.location(event);
+        // Do not display details
+        // return template.summary(event) + template.details(event) + template.location(event);
+        return template.summary(event) + template.location(event);
     };
     scheduler.tooltip.config.delta_x = 1;
     scheduler.tooltip.config.delta_y = 1;
