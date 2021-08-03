@@ -1,0 +1,14 @@
+[Unit]
+Description=
+After=network.target
+
+[Service]
+ExecStart=__PREFIX__/start_calendar.sh
+WorkingDirectory=__PREFIX__
+Restart=on-failure
+User=www-data
+Group=www-data
+Environment=OWCALENDAR=production
+
+[Install]
+WantedBy=multi-user.target
