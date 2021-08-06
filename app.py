@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 from flask import Flask, render_template, make_response, request, jsonify, \
-    redirect, send_from_directory
+    redirect, send_from_directory, url_for
 from flask_caching import Cache
 import json
 import os
@@ -164,7 +164,7 @@ for folder_name in os.listdir(STATIC_FOLDER_PATH):
 
 @app.route("/")
 def serve_index():
-    return send_from_directory("static", "index.html")
+    return redirect(url_for('get_calendar', type="html"))
 
 @app.route("/about.html")
 def serve_about():
