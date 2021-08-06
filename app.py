@@ -159,8 +159,6 @@ def render_app_template(template, specification):
 def get_calendar(type):
     """Return a calendar."""
     specification = get_specification()
-    if type == "spec":
-        return jsonify(specification)
     if type == "events.json":
         strategy = ConvertToDhtmlx(specification, get_text_from_url)
         strategy.retrieve_calendars()
