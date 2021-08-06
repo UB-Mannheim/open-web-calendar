@@ -9,7 +9,7 @@ fi
 if ! [ x"$OWCALENDAR" = xproduction ]; then
     EXTRA_ARGS="-e CACHE_REQUESTED_URLS_FOR_SECONDS=10"
 else
-    EXTRA_ARGS="-e CACHE_REQUESTED_URLS_FOR_SECONDS=90"
+    EXTRA_ARGS="-e CACHE_REQUESTED_URLS_FOR_SECONDS=120 -e APP_DEBUG=false"
 fi
 
 gunicorn -b "0.0.0.0:23232" app:app $EXTRA_ARGS

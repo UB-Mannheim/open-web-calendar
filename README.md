@@ -16,15 +16,12 @@ You might want to:
 
 Python: 3.7, 3.8, 3.9, 3.10
 
-There are several commercial solutions which allow embedding of calendars into my website.
-I only have a link to an ICS file and want to show a nice-looking calendar on my site.
-Browser-only calendars usually have the problem that many ICS files can not be
-accessed (such as ownCloud/nextCloud in my case).
-I also want to be in control over who knows the people who
-visit the site and not pass everything to Google.
-This is a solution in my case which I share with the world.
-You are free to use it or deploy your own, modify or share it.
-It works offline and in company networks, too.
+Some changes:
+- only title of events are displayed (not the description)
+- "read-only" view (no mouse interaction/tool-tip)
+- Use COLOR attribute (e.g. set by nextclouds calendar app)
+- serve default calendar for "/"
+- wip: use URL prefix
 
 Features
 - Embedded calendar
