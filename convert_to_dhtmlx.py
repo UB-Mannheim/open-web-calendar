@@ -3,6 +3,7 @@ from flask import jsonify
 from conversion_base import ConversionStrategy
 import recurring_ical_events
 import icalendar
+from pprint import pprint
 from dateutil.parser import parse as parse_date
 import pytz
 
@@ -10,7 +11,6 @@ import pytz
 def is_date(date):
     """Whether the date is a datetime.date and not a datetime.datetime"""
     return isinstance(date, datetime.date) and not isinstance(date, datetime.datetime)
-
 
 class ConvertToDhtmlx(ConversionStrategy):
     """Convert events to dhtmlx. This conforms to a stratey pattern.
