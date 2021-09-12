@@ -151,6 +151,22 @@ function loadCalendar() {
     scheduler.config.last_hour = 22;
     scheduler.config.start_on_monday = true;
 
+    // german date format
+    //  - header of a day's column
+    scheduler.config.day_date = "%D, %j. %F";
+    //  - header of day tab
+    scheduler.templates.day_date = function(date) {
+        var formatDay = scheduler.date.date_to_str("%D, %j. %F");
+        return formatDay(date);
+    }
+
+    // Replace header of week tab with calendar title
+    if (specification.replace_week_header){
+        scheduler.templates.week_date = function(start, end){
+            return specification.title;
+        }
+    }
+
     scheduler.init('scheduler_here', new Date(), specification["tab"]);
 
     // event in the calendar
