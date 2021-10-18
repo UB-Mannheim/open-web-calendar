@@ -100,6 +100,9 @@ controls:
 ## You can describe the calendar with a text so people know what it is about.
 description: "This is a calendar which provides a website and an ICS subscription link based on the different calendars it is configured to use."
 
+# Default timezone (Applied if no timezone is specified by the event, e.g. for full day events)
+calendar_timezone: "Europe/Berlin"
+
 ###################### You will probably not change this. ######################
 ##
 ## The template is the file which shows the calendar.
@@ -108,4 +111,3 @@ template: "dhtmlx.html"
 
 ## This is set by the dhtmlscheduler when the events are displayed.
 timeshift: 0
-

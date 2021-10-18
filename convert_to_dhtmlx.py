@@ -3,18 +3,27 @@ from flask import jsonify
 from conversion_base import ConversionStrategy
 import recurring_ical_events
 import icalendar
+import logging
 from pprint import pprint
-
+import pytz
 
 class ConvertToDhtmlx(ConversionStrategy):
     """Convert events to dhtmlx. This conforms to a stratey pattern.
-    
-    - timeshift_minutes is the timeshift specified by the calendar
-        for dates.
     """
-    
+
     def created(self):
-        self.timeshift = int(self.specification["timeshift"])
+        _logger = logging.getLogger(__name__)
+
+        self.calendar_timezone = self.specification.get("calendar_timezone")
+        if not self.calendar_timezone:
+            _logger.warning("No default timezone specified - fall back to UTC")
+            self.calendar_timezone = "UTC"
+        try:
+            self.timezone = pytz.timezone(self.calendar_timezone)
+            _logger.warning(f"Using default timezone: {self.calendar_timezone}")
+        except pytz.exceptions.UnknownTimeZoneError:
+            _logger.warning(f"Unknown timezone specified: {self.calendar_timezone}. Using default: UTC")
+            self.timezone = pytz.timezone("UTC")
 
     def date_to_string(self, date):
         """Convert a date to a string."""
@@ -22,11 +31,10 @@ class ConvertToDhtmlx(ConversionStrategy):
         # see https://docs.dhtmlx.com/scheduler/howtostart_nodejs.html#step4implementingcrud
         # see https://docs.python.org/3/library/datetime.html#datetime.datetime.isoformat
         # see https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior
-        timezone = datetime.timezone(datetime.timedelta(minutes=-self.timeshift))
         if isinstance(date, datetime.date) and not isinstance(date, datetime.datetime):
-            date = datetime.datetime(date.year, date.month, date.day, tzinfo=timezone)
+            date = self.timezone.localize(datetime.datetime(date.year, date.month, date.day))
         elif date.tzinfo is None:
-            date = date.replace(tzinfo=timezone)
+            date = self.timezone.localize(date)
         date = date.astimezone(datetime.timezone.utc)
         return date.strftime("%Y-%m-%d %H:%M")
 
