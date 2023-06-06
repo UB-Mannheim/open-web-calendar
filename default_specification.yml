@@ -144,9 +144,6 @@ contributing: "https://github.com/niccokunzmann/open-web-calendar/#contributing"
 ## This is a link to the translations page
 translate: "https://hosted.weblate.org/engage/open-web-calendar/"
 
-# Default timezone (Applied if no timezone is specified by the event, e.g. for full day events)
-calendar_timezone: "Europe/Berlin"
-
 ###################### You will probably not change this. ######################
 ##
 ## The template is the file which shows the calendar.
@@ -155,3 +152,4 @@ template: "dhtmlx.html"
 
 ## This is set by the dhtmlscheduler when the events are displayed.
 timeshift: 0
+
