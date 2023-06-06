@@ -34,6 +34,7 @@ function getQueries() {
 }
 
 // TODO: allow choice through specification
+var GOOGLE_URL = "https://maps.google.com/maps?q=";
 var OSM_URL = "https://www.openstreetmap.org/search?query=";
 
 /* Create a link around the HTML text.
@@ -137,9 +138,9 @@ function loadCalendar() {
     scheduler.plugins({
         agenda_view: true,
         multisource: true,
-        quick_info: true,
+        quick_info: false,
         recurring: false,
-        tooltip: true,
+        tooltip: false,
         readonly: true,
     });
     // set format of dates in the data source
@@ -164,6 +165,23 @@ function loadCalendar() {
     scheduler.config.first_hour = parseInt(specification["starting_hour"]);
     scheduler.config.last_hour = parseInt(specification["ending_hour"]);
     var date = specification["date"] ? new Date(specification["date"]) : new Date();
+
+    // german date format
+    //  - header of a day's column
+    scheduler.config.day_date = "%D, %j. %F";
+    //  - header of day tab
+    scheduler.templates.day_date = function(date) {
+        var formatDay = scheduler.date.date_to_str("%D, %j. %F");
+        return formatDay(date);
+    }
+
+    // Replace header of week tab with calendar title
+    if (specification.replace_week_header){
+        scheduler.templates.week_date = function(start, end){
+            return specification.title;
+        }
+    }
+
     scheduler.init('scheduler_here', date, specification["tab"]);
 
     // event in the calendar
@@ -172,14 +190,12 @@ function loadCalendar() {
     }
     // tool tip
     // see https://docs.dhtmlx.com/scheduler/tooltips.html
-    // --> disabled / not imported in templates/calendars/dhtmlx.html
     scheduler.templates.tooltip_text = function(start, end, event) {
         // Do not display details
-        // return template.summary(event) + template.details(event) + template.location(event);
-        return template.summary(event) + template.location(event);
+        return template.summary(event) + template.details(event) + template.location(event);
     };
-    scheduler.tooltip.config.delta_x = 1;
-    scheduler.tooltip.config.delta_y = 1;
+    //scheduler.tooltip.config.delta_x = 1;
+    //scheduler.tooltip.config.delta_y = 1;
     // quick info
     scheduler.templates.quick_info_title = function(start, end, event){
         return template.summary(event);
