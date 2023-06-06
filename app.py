@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from flask import Flask, render_template, make_response, request, jsonify, \
-    redirect, send_from_directory, url_for
+    redirect, send_from_directory
 from flask_caching import Cache
 import json
 import os
@@ -159,6 +159,8 @@ def render_app_template(template, specification):
 def get_calendar(type):
     """Return a calendar."""
     specification = get_specification()
+    if type == "spec":
+        return jsonify(specification)
     if type == "events.json":
         strategy = ConvertToDhtmlx(specification, get_text_from_url)
         strategy.retrieve_calendars()
