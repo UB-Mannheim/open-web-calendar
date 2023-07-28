@@ -39,6 +39,11 @@ class ConvertToDhtmlx(ConversionStrategy):
         return date.strftime("%Y-%m-%d %H:%M")
 
     def convert_ical_event(self, calendar_event):
+        # skip events with defined status
+        event_status = calendar_event.get("STATUS", "")
+        hide_when_status = self.specification.get("hide_when_status") or []
+        if event_status in hide_when_status:
+            return None
         start = calendar_event["DTSTART"].dt
         end = calendar_event.get("DTEND", calendar_event["DTSTART"]).dt
         geo = calendar_event.get("GEO", None)
@@ -112,7 +117,8 @@ class ConvertToDhtmlx(ConversionStrategy):
             with self.lock:
                 for event in events:
                     json_event = self.convert_ical_event(event)
-                    self.components.append(json_event)
+                    if json_event:
+                        self.components.append(json_event)
                 
 
 

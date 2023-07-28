@@ -104,6 +104,10 @@ description: "This is a calendar which provides a website and an ICS subscriptio
 # Default timezone (Applied if no timezone is specified by the event, e.g. for full day events)
 calendar_timezone: "Europe/Berlin"
 
+## Do not show events with a status listed here
+hide_when_status:
+#  - "TENTATIVE"
+
 ###################### You will probably not change this. ######################
 ##
 ## The template is the file which shows the calendar.
