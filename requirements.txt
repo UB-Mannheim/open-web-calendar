@@ -22,7 +22,7 @@ flask-caching==2.0.2
     # via -r requirements.in
 gunicorn==20.1.0
     # via -r requirements.in
-icalendar==5.0.7
+icalendar==6.3.1
     # via
     #   -r requirements.in
     #   recurring-ical-events
@@ -45,7 +45,6 @@ python-dateutil==2.8.2
     #   recurring-ical-events
 pytz==2023.3
     # via
-    #   icalendar
     #   recurring-ical-events
     #   x-wr-timezone
 pyyaml==6.0
@@ -56,6 +55,8 @@ requests==2.31.0
     # via -r requirements.in
 six==1.16.0
     # via python-dateutil
+tzdata==2025.2
+    # via icalendar
 urllib3==2.0.3
     # via requests
 werkzeug==2.3.6
