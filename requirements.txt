@@ -13,7 +13,9 @@ certifi==2023.5.7
 charset-normalizer==3.2.0
     # via requests
 click==8.1.4
-    # via flask
+    # via
+    #   flask
+    #   x-wr-timezone
 flask==2.3.2
     # via
     #   -r requirements.in
@@ -22,7 +24,7 @@ flask-caching==2.0.2
     # via -r requirements.in
 gunicorn==20.1.0
     # via -r requirements.in
-icalendar==5.0.7
+icalendar==6.3.1
     # via
     #   -r requirements.in
     #   recurring-ical-events
@@ -43,24 +45,24 @@ python-dateutil==2.8.2
     # via
     #   icalendar
     #   recurring-ical-events
-pytz==2023.3
-    # via
-    #   icalendar
-    #   recurring-ical-events
-    #   x-wr-timezone
 pyyaml==6.0
     # via -r requirements.in
-recurring-ical-events==2.0.2
+recurring-ical-events==3.7.0
     # via -r requirements.in
 requests==2.31.0
     # via -r requirements.in
 six==1.16.0
     # via python-dateutil
+tzdata==2025.2
+    # via
+    #   icalendar
+    #   recurring-ical-events
+    #   x-wr-timezone
 urllib3==2.0.3
     # via requests
 werkzeug==2.3.6
     # via flask
-x-wr-timezone==0.0.5
+x-wr-timezone==2.0.1
     # via recurring-ical-events
 zipp==3.16.1
     # via importlib-metadata
