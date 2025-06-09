@@ -33,11 +33,13 @@ parse==1.19.1
     #   parse-type
 parse-type==0.6.2
     # via behave
-pluggy==1.2.0
+pluggy==1.6.0
+    # via pytest
+pygments==2.19.1
     # via pytest
 pysocks==1.7.1
     # via urllib3
-pytest==7.4.0
+pytest==8.4.0
     # via -r test-requirements.in
 selenium==4.10.0
     # via -r test-requirements.in
