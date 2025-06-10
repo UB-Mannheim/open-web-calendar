@@ -10,16 +10,16 @@ attrs==23.1.0
     #   trio
 behave==1.2.6
     # via -r test-requirements.in
-certifi==2023.5.7
+certifi==2024.7.4
     # via selenium
 exceptiongroup==1.1.2
     # via
     #   pytest
     #   trio
     #   trio-websocket
-h11==0.14.0
+h11==0.16.0
     # via wsproto
-idna==3.4
+idna==3.7
     # via trio
 iniconfig==2.0.0
     # via pytest
@@ -57,7 +57,7 @@ trio==0.22.2
     #   trio-websocket
 trio-websocket==0.10.3
     # via selenium
-urllib3[socks]==2.0.3
+urllib3[socks]==2.2.2
     # via selenium
 wsproto==1.2.0
     # via trio-websocket
