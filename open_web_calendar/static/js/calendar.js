@@ -586,6 +586,14 @@ scheduler.date.get_week_end=function(start_date){
   return scheduler.date.add(start_date, specification["start_of_week"] == "work" ? 5 : 7,"day");
 }
 
+// Replace header of week tab with calendar title
+if (specification.replace_week_header){
+    scheduler.templates.week_date = function(start, end){
+        return specification.title;
+    }
+};
+
+
 /* Customize the month view so the work week is displayed.
  *
  * See
