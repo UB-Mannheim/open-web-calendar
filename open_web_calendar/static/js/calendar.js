@@ -425,6 +425,16 @@ function loadCalendar() {
     scheduler.config.first_hour = parseInt(specification["starting_hour"]);
     scheduler.config.last_hour = parseInt(specification["ending_hour"]);
     const date = specification["date"] ? parseDate(specification["date"]) : new Date();
+
+    // german date format
+    //  - header of a day's column
+    scheduler.config.day_date = "%D, %j. %F";
+    //  - header of day tab
+    scheduler.templates.day_date = function(date) {
+        var formatDay = scheduler.date.date_to_str("%D, %j. %F");
+        return formatDay(date);
+    }
+
     scheduler.init('scheduler_here', date, specification["tab"]);
 
     // see https://docs.dhtmlx.com/scheduler/custom_events_content.html
