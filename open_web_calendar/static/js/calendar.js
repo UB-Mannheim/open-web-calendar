@@ -427,6 +427,7 @@ function loadCalendar() {
     const date = specification["date"] ? parseDate(specification["date"]) : new Date();
 
     // german date format
+    // week view
     //  - header of a day's column
     scheduler.config.day_date = "%D, %j. %F";
     //  - header of day tab
@@ -434,6 +435,20 @@ function loadCalendar() {
         var formatDay = scheduler.date.date_to_str("%D, %j. %F");
         return formatDay(date);
     }
+
+    // date format in agenda view
+    const dayDateToStr = scheduler.date.date_to_str("%j. %F");
+    const dayDowToStr = scheduler.date.date_to_str("%l");
+
+    scheduler.templates.agenda_day = function(date){
+        return `<div class="dhx_agenda_day_date">${dayDateToStr(date)}</div>
+        <div class="dhx_agenda_day_dow">${dayDowToStr(date)}</div>`;
+    };
+
+    // header of day column in day view
+    scheduler.templates.day_scale_date = function(date){
+        return "";
+    };
 
     scheduler.init('scheduler_here', date, specification["tab"]);
 
