@@ -129,7 +129,6 @@ const template = {
     "details": function(event) {
         const details = document.createElement("div");
         details.classList.add("details");
-        details.innerHTML = event.description;
         // set the target of all the links
         const links = details.getElementsByTagName("a");
         for (const link of links) {
@@ -471,7 +470,7 @@ function loadCalendar() {
     // see https://docs.dhtmlx.com/scheduler/tooltips.html
     if (CAN_HAVE_TOOLTIP) {
         scheduler.templates.tooltip_text = function(start, end, event) {
-            return template.formatted_summary(event) + template.details(event) + template.location(event);
+            return template.formatted_summary(event);
         };
         scheduler.config.tooltip_offset_x = 1;
         scheduler.config.tooltip_offset_y = 1;
@@ -482,8 +481,7 @@ function loadCalendar() {
         return template.formatted_summary(event);
     }
     scheduler.templates.quick_info_content = function(start, end, event){
-        return template.details(event) +
-            template.location(event) +
+        return template.location(event) +
             template.participants(event.participants) +
             template.debug(event);
     }

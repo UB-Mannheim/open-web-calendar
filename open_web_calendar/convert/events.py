@@ -146,6 +146,10 @@ class ConvertToEvents(ConversionStrategy):
         }
         if not location_map["text"] and not location_map["url"]:
             location_map = None
+        delete_attributes = ['description', 'created', 'participiants']
+        for attrib in delete_attributes:
+            if attrib in calendar_event:
+                del calendar_event[attrib]
         return {
             "start_date": start_date,
             "end_date": self.date_to_string(end),
@@ -154,7 +158,6 @@ class ConvertToEvents(ConversionStrategy):
             "start_date_iso_0": start.isoformat(),
             "end_date_iso_0": end.isoformat(),
             "text": name,
-            "description": self.get_event_description(calendar_event),
             "location": location_map,
             "uid": uid,
             "ical": calendar_event.to_ical().decode("UTF-8"),
@@ -168,7 +171,6 @@ class ConvertToEvents(ConversionStrategy):
             "css-classes": ["event"]
             + self.get_event_classes(calendar_event)
             + [f"CALENDAR-INDEX-{calendar_index}"],
-            "participants": self.get_participants(calendar_event),
             "owc": {
                 attr: value
                 for attr, value in calendar_event.items()
