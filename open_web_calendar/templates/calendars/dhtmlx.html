@@ -10,7 +10,6 @@ SPDX-License-Identifier: GPL-2.0-only
     <head>
         <title>{{ specification["title"] | safe }}</title>
         <meta charset="utf-8">
-        <link rel="alternate" type="text/calendar" href="/calendar.ics{{ get_query_string() }}" />
         <script type="text/javascript">
             var specification = {{ specification | tojson | safe }};
         </script>

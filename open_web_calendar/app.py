@@ -37,7 +37,6 @@ from open_web_calendar.util import set_url_username_password
 from . import translate, version
 from .config import environment as config
 from .convert.events import ConvertToEvents
-from .convert.ics import ConvertToICS
 from .encryption import EmptyFernetStore, FernetStore
 
 if TYPE_CHECKING:
@@ -278,8 +277,6 @@ def get_calendar(ext):
             return get_conversion(ConvertToEvents, specification)
         except:
             return json_error()
-    if ext == "ics":
-        return get_conversion(ConvertToICS, specification)
     if ext == "html":
         template_name = specification["template"]
         all_template_names = os.listdir(CALENDAR_TEMPLATE_FOLDER)  # noqa: PTH208, RUF100
