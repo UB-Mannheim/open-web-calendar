@@ -126,6 +126,11 @@ class ConvertToEvents(ConversionStrategy):
         return participant
 
     def convert_ical_event(self, calendar_index, calendar_event: Event):
+        # skip events with defined status
+        event_status = calendar_event.get("STATUS", "")
+        hide_when_status = self.specification.get("hide_when_status") or []
+        if event_status in hide_when_status:
+            return None
         start = calendar_event.start
         end = calendar_event.end
         if is_date(start) and is_date(end) and start == end:
@@ -218,7 +223,8 @@ class ConvertToEvents(ConversionStrategy):
         with self.lock:
             for event in events:
                 json_event = self.convert_ical_event(calendar_index, event)
-                self.components.append(json_event)
+                if json_event:
+                    self.components.append(json_event)
 
     def get_event_classes(self, event) -> list[str]:
         """Return the CSS classes that should be used for the event styles."""
