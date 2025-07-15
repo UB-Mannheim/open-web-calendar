@@ -263,20 +263,20 @@ clean_html_remove_tags:
 ##
 ## Where the current modifications can be obtained.
 ## This is required by GPL.
-source_code: "https://github.com/niccokunzmann/open-web-calendar/"
+source_code: "https://github.com/UB-Mannheim/open-web-calendar/"
 
 ## You can override the version text next to the source code link.
 ## If this is empty, the version of the package is used.
 version: ''
 
 ## This is a link to the contribution page
-contributing: "https://open-web-calendar.quelltext.eu/contributing/"
+contributing: "https://github.com/UB-Mannheim/open-web-calendar/"
 
 ## This is a link to the translations page
-translate: "https://hosted.weblate.org/engage/open-web-calendar/"
+translate: "https://github.com/UB-Mannheim/open-web-calendar/"
 
 ## This is a link to the privacy policy
-privacy_policy: "https://open-web-calendar.quelltext.eu/host/privacy-policy/"
+privacy_policy: "https://www.uni-mannheim.de/en/data-protection-declaration/"
 
 ###################### You will probably not change this. ######################
 ##
